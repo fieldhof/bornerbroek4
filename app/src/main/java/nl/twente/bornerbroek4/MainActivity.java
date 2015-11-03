@@ -1,5 +1,6 @@
 package nl.twente.bornerbroek4;
 
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
@@ -19,6 +20,9 @@ import nl.twente.bornerbroek4.fragment.competition.CompFragment;
 import nl.twente.bornerbroek4.fragment.training.TrainingFragment;
 import nl.twente.bornerbroek4.httpcalls.LoginAsyncTask;
 
+import java.io.IOException;
+import java.util.Properties;
+
 public class MainActivity extends ActionBarActivity {
 
     private String[] drawerNames;
@@ -32,9 +36,22 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        new LoginAsyncTask().execute();
+
+        AssetManager manager = getAssets();
+        Properties prop = new Properties();
+        try {
+            prop.load(manager.open("config.properties"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String user = prop.getProperty("user");
+        String pass = prop.getProperty("password");
+
+        new LoginAsyncTask().execute(user, pass);
 
         initDrawer();
+
 
     }
 

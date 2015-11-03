@@ -13,21 +13,22 @@ import java.net.URL;
 /**
  * Created by Fieldhof on 26-9-2015.
  */
-public class LoginAsyncTask extends AsyncTask<Void, Void, String> {
+public class LoginAsyncTask extends AsyncTask<String, Void, String> {
 
     @Override
-    protected String doInBackground(Void... params) {
+    protected String doInBackground(String... params) {
 
         HttpsURLConnection con = null;
-
+        InputStream input = null;
         try {
             URL url = new URL("https://www.nifnic.nl/appie-api/v1/login");
             con = (HttpsURLConnection)url.openConnection();
             con.setRequestMethod("POST");
 
             JSONObject body = new JSONObject();
-            body.put("username", "veldaa");
-            body.put("password", "NEbAkUd3uyU2ubrAcr4k");
+
+            body.put("username", params[0]);
+            body.put("password", params[1]);
 
             sendBody(con, body.toString());
 
@@ -38,6 +39,13 @@ public class LoginAsyncTask extends AsyncTask<Void, Void, String> {
         } catch (JSONException e) {
             e.printStackTrace();
         } finally {
+            if(input != null) {
+                try {
+                    input.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
             if (con != null) {
                 con.disconnect();
             }
