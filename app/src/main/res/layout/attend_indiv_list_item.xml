@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:paddingLeft="10dp"
+              android:paddingRight="10dp">
+
+    <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="left"
+            android:text="#"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:id="@+id/attend_indiv_nr"/>
+
+    <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="7"
+            android:gravity="left"
+            android:text="Speler"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:id="@+id/attend_indiv_name"/>
+
+    <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:gravity="right"
+            android:text="Opkomst"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:id="@+id/attend_indiv_outof"/>
+
+    <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="right"
+            android:text="%"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:id="@+id/attend_indiv_perc"/>
+</LinearLayout>
